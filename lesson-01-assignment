@@ -9,7 +9,7 @@ course_id = Course.find_by(trimester_id: trimester_id, coding_class_id: coding_c
 
 enrollments = Enrollment.where(course_id: course_id)
 enrollments.each do |enrollment|
-    student = Student.find(enrollment.student.id)
+    student = enrollment.student
 puts "#{student.id} #{student.email}"
 end
 
@@ -25,7 +25,6 @@ course_id = Course.find_by(trimester_id: trimester_id, coding_class_id: coding_c
 enrollments = Enrollment.where(course_id: course_id, final_grade: nil)
 
 enrollments.each do |enrollment|
-    mentor_enrollment_assignment = MentorEnrollmentAssignment.find_by(enrollment_id: enrollment.id)
-    mentor = mentor_enrollment_assignment.mentor
+    mentor = enrollment.mentor_enrollment_assignment&.mentor
 puts "#{mentor.id}, #{mentor.email}"
 end
