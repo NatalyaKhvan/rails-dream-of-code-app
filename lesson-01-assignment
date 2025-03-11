@@ -1,0 +1,30 @@
+Question 1.
+
+41, hilton.bartoletti@spinka.test
+42, norberto@bayer-davis.example
+
+trimester_id = Trimester.find_by(term: 'Spring', year: '2025')
+coding_class_id = CodingClass.find_by(title:'Intro to Programming')
+course_id = Course.find_by(trimester_id: trimester_id, coding_class_id: coding_class_id)
+
+enrollments = Enrollment.where(course_id: course_id)
+enrollments.each do |enrollment|
+    student = enrollment.student
+puts "#{student.id} #{student.email}"
+end
+
+Question 2
+
+25, augustus@lockman.test
+26, lavern.leffler@walsh.test
+
+trimester_id = Trimester.find_by(term: 'Spring', year: '2025')
+coding_class_id = CodingClass.find_by(title:'Intro to Programming')
+course_id = Course.find_by(trimester_id: trimester_id, coding_class_id: coding_class_id)
+
+enrollments = Enrollment.where(course_id: course_id, final_grade: nil)
+
+enrollments.each do |enrollment|
+    mentor = enrollment.mentor_enrollment_assignment&.mentor
+puts "#{mentor.id}, #{mentor.email}"
+end
