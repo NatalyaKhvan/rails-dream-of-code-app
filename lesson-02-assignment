@@ -1,0 +1,35 @@
+Question 1.
+
+trimester = Trimester.create(year: "2026", term: "Spring")
+CodingClass.all.each do |coding_class|
+    Course.create(coding_class_id: coding_class.id, trimester_id: trimester.id)
+  end
+
+Question 2.
+
+student = Student.create(first_name: "Katy", last_name:"Smith", email: "katy@test.test")
+
+trimester = Trimester.find_by(year: "2026", term: "Spring")
+coding_class = CodingClass.find_by(title: "Intro to Programming")
+course = Course.find_by(coding_class_id: coding_class.id, trimester_id: trimester.id)
+enrollment = Enrollment.create(course_id: course.id, student_id: student.id)
+
+mentor_with_fewer_assignments = Mentor.all.find do |mentor|
+    entor.mentor_enrollment_assignments.count <= 2
+    end
+
+student.mentor = mentor_with_fewer_assignments
+
+Question 4.
+
+Cookbookly is a recipe-sharing platform designed for food enthusiasts, home cooks, and anyone who loves discovering and sharing new dishes. The app allows users to create, browse, and review recipes, as well as follow other users for updates on their latest creations.
+
+Core Features:
+1. Recipe Creation: Users can create and manage recipes with a title, detailed instructions, and a list of ingredients. Recipes are tied to the users who create them, enabling easy management and organization.
+2. Recipe Browsing and Viewing: Users can browse a collection of recipes created by others, making it easy to explore new dishes and culinary ideas.
+3. Review System: Each recipe can be reviewed by users, with ratings and comments. This helps create a community-driven space where users can give feedback on their experiences with recipes.
+4. Ingredient Management: Recipes include ingredients that are stored centrally, allowing them to be reused across multiple recipes.
+5. Follow Functionality: Users can follow other users to stay updated with their new recipes and activities. This creates a dynamic social network around cooking and recipe sharing.
+
+Cookbookly offers an easy-to-use interface for discovering, sharing, and reviewing recipes, creating an engaging and interactive community of home cooks and food lovers.
+
