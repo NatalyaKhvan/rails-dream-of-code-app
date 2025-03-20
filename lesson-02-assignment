@@ -1,8 +1,9 @@
 Question 1.
 
-trimester = Trimester.create(year: "2026", term: "Spring")
+trimester = Trimester.create(year: "2026", term: "Spring", application_deadline: '2026-02-15', start_date: "2026-03-01", end_date: "2026-06-30")
+
 CodingClass.all.each do |coding_class|
-    Course.create(coding_class_id: coding_class.id, trimester_id: trimester.id)
+    Course.create(coding_class_id: coding_class.id, trimester_id: trimester.id, max_enrollment: 25)
   end
 
 Question 2.
@@ -15,7 +16,7 @@ course = Course.find_by(coding_class_id: coding_class.id, trimester_id: trimeste
 enrollment = Enrollment.create(course_id: course.id, student_id: student.id)
 
 mentor_with_fewer_assignments = Mentor.all.find do |mentor|
-    entor.mentor_enrollment_assignments.count <= 2
+    mentor.mentor_enrollment_assignments.count <= 2
     end
 
 student.mentor = mentor_with_fewer_assignments
