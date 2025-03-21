@@ -11,15 +11,22 @@ Question 2.
 student = Student.create(first_name: "Katy", last_name:"Smith", email: "katy@test.test")
 
 trimester = Trimester.find_by(year: "2026", term: "Spring")
+
 coding_class = CodingClass.find_by(title: "Intro to Programming")
+
 course = Course.find_by(coding_class_id: coding_class.id, trimester_id: trimester.id)
+
 enrollment = Enrollment.create(course_id: course.id, student_id: student.id)
 
-mentor_with_fewer_assignments = Mentor.all.find do |mentor|
-    mentor.mentor_enrollment_assignments.count <= 2
-    end
+mentor = MentorEnrollmentAssignment
+          .group(:mentor_id)
+          .having('COUNT(mentor_id) <= 2')
+          .limit(1)
+          .first
 
-student.mentor = mentor_with_fewer_assignments
+mentor_id = mentor&.mentor_id
+
+MentorEnrollmentAssignment.create(mentor_id: mentor_id, enrollment_id: enrollment.id)
 
 Question 4.
 
