@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Students", type: :request, skip: true do
-  describe "POST /api/v1/students" do
+RSpec.describe 'Api::V1::Students', type: :request, skip: true do
+  describe 'POST /api/v1/students' do
     let(:valid_attributes) do
       {
         student: {
@@ -12,13 +12,13 @@ RSpec.describe "Api::V1::Students", type: :request, skip: true do
       }
     end
 
-    it "creates a new student" do
-      expect {
+    it 'creates a new student' do
+      expect do
         post '/api/v1/students', params: valid_attributes
-      }.to change(Student, :count).by(1)
+      end.to change(Student, :count).by(1)
 
       expect(response).to have_http_status(:created)
-      expect(JSON.parse(response.body)['student']['email']).to eq("validstudent@example.com")
+      expect(JSON.parse(response.body)['student']['email']).to eq('validstudent@example.com')
     end
   end
 end
