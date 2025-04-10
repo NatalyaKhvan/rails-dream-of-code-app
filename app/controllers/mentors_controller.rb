@@ -7,7 +7,9 @@ class MentorsController < ApplicationController
   end
 
   # GET /mentors/1 or /mentors/1.json
-  def show; end
+  def show
+    @mentor = Mentor.find(params[:id])
+  end
 
   # GET /mentors/new
   def new
