@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trimesters</title>
+    </head>
+<body>
+    <h1>Trimesters</h1>
+    <ul>
+        <% if @trimesters.any? %>
+            <% @trimesters.each do |trimester| %>
+                <li><%= "#{trimester.term} #{trimester.year}" %></li>
+            <% end %>
+        <% end %>
+    </ul>
+</body>
+</html>
