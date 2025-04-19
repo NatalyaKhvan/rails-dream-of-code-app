@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "admin_dashboard/index"
   resources :students
   resources :mentors
   resources :enrollments
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   resources :coding_classes
   get "/trimesters", to: "trimesters#index"
   get "/trimesters/:id", to: "trimesters#show"
+  get "/dashboard", to: "admin_dashboard#index"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

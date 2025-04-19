@@ -4,15 +4,21 @@ RSpec.describe Enrollment, type: :model do
   describe '#is_past_application_deadline?' do
     let(:trimester) do
       Trimester.create(
-        year: '2025', term: 'Spring',
+        year: '2025',
+        term: 'Spring',
         application_deadline: Date.new(2025, 3, 1),
         start_date: Date.new(2025, 3, 10),
         end_date: Date.new(2025, 6, 10)
       )
     end
+    let(:coding_class) do
+      CodingClass.create(
+        title: 'Ruby on Rails'
+      )
+    end
     let(:course) do
       Course.create(
-        coding_class_id: 1,
+        coding_class_id: coding_class.id,
         trimester: trimester,
         max_enrollment: 30
       )
