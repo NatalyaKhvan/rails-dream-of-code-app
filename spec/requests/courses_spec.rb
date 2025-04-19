@@ -31,12 +31,14 @@ RSpec.describe "Courses", type: :request do
     Enrollment.create!(
         student: @student1,
         course: @course,
-        final_grade: nil
+        final_grade: nil,
+        created_at: Date.new(2025, 2, 28)
     )
     Enrollment.create!(
         student: @student2,
         course: @course,
-        final_grade: nil
+        final_grade: nil,
+        created_at: Date.new(2025, 3, 2)
     )
   end
 
