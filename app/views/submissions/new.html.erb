@@ -1,4 +1,4 @@
-<h1>New Submission for <%= @course.title %></h1>
+<h1>New Submission for <%= @course.coding_class.title %></h1>
 
 <%= form_with(model: [@course, @submission], local: true) do |form| %>
   <% if @submission.errors.any? %>
