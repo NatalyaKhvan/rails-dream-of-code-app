@@ -3,7 +3,7 @@
 <%= form_with(model: @trimester, local: true) do |form| %>
   <% if @trimester.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(@trimester.errors.count, "error") %> prohibited this trimester from being saved:</h2>
+    <h2>Please fix the following <%= pluralize(@trimester.errors.count, "issue") %> before updating:</h2>
       <ul>
         <% @trimester.errors.full_messages.each do |message| %>
           <li><%= message %></li>
