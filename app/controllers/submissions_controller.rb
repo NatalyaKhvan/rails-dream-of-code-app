@@ -1,21 +1,17 @@
 class SubmissionsController < ApplicationController
+  before_action :set_course_data, only: [:new, :create]
+  
   # GET /submissions/new
   def new
-    @course = Course.find(params[:course_id])
     @submission = Submission.new
-    @enrollments = @course.enrollments.includes(:student)
-    @lessons = @course.lessons
   end
 
   def create
-    @course = Course.find(params[:course_id])
     @submission = Submission.new(submission_params)
 
     if @submission.save
       redirect_to course_path(@course), notice: 'Submission was successfully created.'
     else
-      @enrollments = @course.enrollments.includes(:student)
-      @lessons = @course.lessons
       render :new
     end
   end
@@ -30,5 +26,11 @@ class SubmissionsController < ApplicationController
 
   def submission_params
     params.require(:submission).permit(:lesson_id, :enrollment_id, :mentor_id, :review_result, :reviewed_at)
+  end
+
+  def set_course_data
+    @course = Course.find(params[:course_id])
+    @enrollments = @course.enrollments.includes(:student)
+    @lessons = @course.lessons
   end
 end
