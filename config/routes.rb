@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   resources :enrollments
   resources :mentor_enrollment_assignments
   resources :lessons
-  resources :courses
+  resources :courses do
+    resources :submissions
+  end
   resources :coding_classes
+  resources :trimesters, only: [:edit, :update]
+  
   get "/trimesters", to: "trimesters#index"
   get "/trimesters/:id", to: "trimesters#show"
   get "/dashboard", to: "admin_dashboard#index"
