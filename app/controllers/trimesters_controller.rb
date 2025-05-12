@@ -1,4 +1,5 @@
 class TrimestersController < ApplicationController
+    before_action :require_admin, only: [:create, :update, :destroy]
 
     def index
         @trimesters = Trimester.all

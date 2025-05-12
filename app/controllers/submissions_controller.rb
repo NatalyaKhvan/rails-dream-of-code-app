@@ -1,6 +1,8 @@
 class SubmissionsController < ApplicationController
   before_action :set_course_data, only: [:new, :create]
-  
+  before_action :require_student, only: [:new, :create]
+  before_action :require_mentor, only: [:edit, :update]
+
   # GET /submissions/new
   def new
     @submission = Submission.new
