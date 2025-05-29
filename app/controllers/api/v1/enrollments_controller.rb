@@ -32,7 +32,9 @@ class Api::V1::EnrollmentsController < ApplicationController
 
     def index
         current_trimester = Trimester.current.first
-        courses = current_trimester ? current_trimester.courses.includes(enrollments: :student) : []
+        return render json: { enrollments: [] }, status: :not_found unless current_trimester
+
+        courses = current_trimester.courses.includes(enrollments: :student)
 
         enrollments_hash = { enrollments: [] }
 

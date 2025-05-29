@@ -33,8 +33,10 @@ class Api::V1::CoursesController < ApplicationController
 
   def index
     current_trimester = Trimester.current.first
-    courses = current_trimester ? current_trimester.courses : []
+    return render json: { courses: [] }, status: :not_found unless current_trimester
 
+    courses = current_trimester.courses
+    
     courses_hash = {
       courses: courses.map do |course|
         {
