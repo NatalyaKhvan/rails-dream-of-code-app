@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         resources :enrollments, only: [:index]
       end
 
+      resources :enrollments, only: [:index]
       resources :students, only: [:create]
     end
   end
