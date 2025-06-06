@@ -36,7 +36,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :courses, only: [:index] do
         resources :enrollments, only: [:index]
+      end
+
+      namespace :current_trimester do
+        resources :enrollments, only: [:index], controller: "api/v1/enrollments"
+      end
+
+      resources :students, only: [:create]
     end
   end
-
 end
